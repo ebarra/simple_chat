@@ -20,4 +20,4 @@ sails new simple_chat
 
 - creo main.js
 - creo chat.js y en el form añado el onsubmit
--
+- añado el campo input para el nombre con id="nick"

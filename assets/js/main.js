@@ -8,4 +8,5 @@ var Prox = Prox || {};
 
 $(document).ready(function(){
     console.log("App document ready");
+    Prox.Chat.init();
 });
