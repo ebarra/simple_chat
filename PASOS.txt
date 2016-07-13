@@ -1,0 +1,23 @@
+#NOTAS:
+#IMPORTANTE: lo que está entre <!--STYLES--> y <!--STYLES END--> en el layout.ejs lo genera sólo.
+#Si lo edito se cambia sólo. Lo mismoc on scripts al final.
+
+
+
+#PASOS:
+
+sails new simple_chat
+
+- descomento linea 30 de config/models.js   migrate: 'alter'
+- creo message.js (con dos campos) y MessageController.js (vacio)
+- integro la parte de carlosapa.
+   1. copio los assets (los js de vendor los pongo en dependencies) y el main.js lo llamo main_carlosapa.js
+   2. adapto el head en el layout.ejs quitando los css
+   3. añado a tasks/pipeline.js el 'fonts/font-awesome/font-awesome.min.css'
+   4. en el layout al final añado a mano los js
+   5. renombro la carpeta images a img de assets
+
+
+- creo main.js
+- creo chat.js y en el form añado el onsubmit
+-
