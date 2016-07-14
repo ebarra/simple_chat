@@ -20,7 +20,7 @@ Prox.Chat = (function(P,undefined){
 
     io.socket.on('connect', function() {
 
-      io.socket.get(_apiUrl, function(messages) {
+      io.socket.get(_apiUrl + "?sort=createdAt%20DESC", function(messages) {
         console.log({messages: messages});
         var arrayLength = messages.length;
         var templ = JST["assets/templates/chat_elem.html"];
