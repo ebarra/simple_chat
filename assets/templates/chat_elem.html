@@ -1,0 +1,23 @@
+<!-- Chat element -->
+<div class="chat_element <%=Prox.Chat.is_own(author)==true ? '':'own_message'%>">
+    <div class="chat_name">
+        <%=author%>
+    </div>
+
+    <!-- Chat Bubble -->
+    <div class="chat_bubble">
+        <div class="chat_message">
+            <%=text%>
+        </div>
+        <div class="chat_meta clearfix">
+            <div class="chat_time">
+                <%=Prox.Chat.timeSince(new Date(createdAt))%>
+            </div>
+            <div class="chat_distance">
+                35 m
+            </div>
+        </div>
+    </div>
+    <!-- /Chat Bubble -->
+</div>
+<!-- /Chat element -->

@@ -1,9 +1,11 @@
 /*
  * Proximity Chat Module
  */
+
 Prox.Chat = (function(P,undefined){
 
   var _apiUrl = "/message";
+  var initial_nick = "";
 
   var handleNewMessage = function() {
       console.log("handleNewMessage function");
@@ -13,11 +15,21 @@ Prox.Chat = (function(P,undefined){
       return false;
   };
 
-  var init = function(){
+  var init = function(nick){
+    initial_nick = nick;
+
     io.socket.on('connect', function() {
 
       io.socket.get(_apiUrl, function(messages) {
         console.log({messages: messages});
+        var arrayLength = messages.length;
+        var templ = JST["assets/templates/chat_elem.html"];
+        for (var i = 0; i < arrayLength; i++) {
+            //he creado una función timeSince y accedo a ella desde la vista
+            //otras alternativas serían extender el objeto que se le pasa, o con los datos o con un helper
+            //https://lostechies.com/derickbailey/2012/04/26/view-helpers-for-underscore-templates/
+            $("#chat_wrap").append(templ(messages[i]));
+        }
       });
 
       io.socket.on('new message', function(newMessage) {
@@ -27,9 +39,50 @@ Prox.Chat = (function(P,undefined){
     });
   };
 
+  /*obtenida de
+  * http://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
+  */
+  var timeSince = function (date) {
+
+      var seconds = Math.floor((new Date() - date) / 1000);
+
+      var interval = Math.floor(seconds / 31536000);
+
+      if (interval > 1) {
+          return interval + " years";
+      }
+      interval = Math.floor(seconds / 2592000);
+      if (interval > 1) {
+          return interval + " months";
+      }
+      interval = Math.floor(seconds / 86400);
+      if (interval > 1) {
+          return interval + " days";
+      }
+      interval = Math.floor(seconds / 3600);
+      if (interval > 1) {
+          return interval + " hours";
+      }
+      interval = Math.floor(seconds / 60);
+      if (interval > 1) {
+          return interval + " minutes";
+      }
+      return Math.floor(seconds) + " seconds";
+  };
+
+  var is_own = function(who){
+    if(initial_nick==who){
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return {
     init: init,
-    handleNewMessage : handleNewMessage
+    handleNewMessage: handleNewMessage,
+    is_own: is_own,
+    timeSince: timeSince
   };
 
 }) (Prox);

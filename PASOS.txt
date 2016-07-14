@@ -21,3 +21,7 @@ sails new simple_chat
 - creo main.js
 - creo chat.js y en el form añado el onsubmit
 - añado el campo input para el nombre con id="nick"
+
+
+-para templates no he visto explicación en ningún sitio, sólo https://groups.google.com/forum/#!topic/sailsjs/rtannbZ1H1c
+https://lodash.com/docs#template
