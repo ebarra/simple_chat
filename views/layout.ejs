@@ -38,6 +38,26 @@
 
     </head>
     <body>
+      <%if (typeof flash !== 'undefined' && flash){%>
+          <% if (flash && flash.err) { %>
+            <script>
+              console.log("FLASH: <%=flash%>");
+            </script>
+                <ul class='alert'>
+                  <% Object.keys(flash.err).forEach(function(error){ %>
+                    <li><%= JSON.stringify(flash.err[error]) %></li>
+                  <% }) %>
+                </ul>
+          <% } %>
+          <% if (flash && flash.info) { %>
+            <%console.log(flash)%>
+            <div data-alert class="alert-box success radius">
+
+                <%= flash.info %>
+                <a href="#" class="close">&times;</a>
+            </div>
+          <% } %>
+      <%}%>
 
     <%- body %>
 

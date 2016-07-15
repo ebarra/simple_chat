@@ -18,6 +18,8 @@ Prox.Chat = (function(P,undefined){
   var init = function(nick){
     initial_nick = nick;
 
+    var socket = io.connect();
+
     io.socket.on('connect', function() {
 
       io.socket.get(_apiUrl + "?sort=createdAt%20DESC", function(messages) {

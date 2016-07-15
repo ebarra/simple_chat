@@ -8,6 +8,9 @@
 
 sails new simple_chat
 
+- Pongo LOGS: dos cosas.
+    descomento todo el request logger de config/http.js y cambio el orden para ponerlo tras bodyparser
+    y en config/log.js activo modo "silly"
 - descomento linea 30 de config/models.js   migrate: 'alter'
 - creo message.js (con dos campos) y MessageController.js (vacio)
 - integro la parte de carlosapa.
@@ -18,9 +21,20 @@ sails new simple_chat
    5. renombro la carpeta images a img de assets
 
 
+
+
 - creo main.js
 - creo chat.js y en el form añado el onsubmit
 - añado el campo input para el nombre con id="nick"
+- hago las templates y uso JST para renderizar la template chat_elem.html desde chat.js una vez por cada chat
+- creo User.js y UserController.js
+- creo dos rutas, / y /home
+- muevo la inicialización del chat a homepage.ejs
+- pongo autoConnect="false" en el script de sails.io.js
+- añado la policy flash en config y en la carpeta policies y en el layout para que lo pinte
+- 
+
+
 
 
 -para templates no he visto explicación en ningún sitio, sólo https://groups.google.com/forum/#!topic/sailsjs/rtannbZ1H1c

@@ -21,6 +21,8 @@
  * For more information on the settings in this file, see:
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.blueprints.html
  *
+ * KIKE XXX default blueprint actions code
+ * https://github.com/balderdashy/sails/tree/master/lib/hooks/blueprints/actions
  */
 
 module.exports.blueprints = {
@@ -44,7 +46,7 @@ module.exports.blueprints = {
   *                                                                          *
   ***************************************************************************/
 
-  // actions: true,
+  actions: false,
 
   /***************************************************************************
   *                                                                          *
@@ -69,7 +71,7 @@ module.exports.blueprints = {
   *                                                                          *
   ***************************************************************************/
 
-  // rest: true,
+  rest: true,
 
   /***************************************************************************
   *                                                                          *
@@ -83,7 +85,7 @@ module.exports.blueprints = {
   *                                                                          *
   ***************************************************************************/
 
-  // shortcuts: true,
+  shortcuts: false,
 
   /***************************************************************************
   *                                                                          *
