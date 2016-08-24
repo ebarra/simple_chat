@@ -11,7 +11,9 @@ Prox.Chat = (function(P,undefined){
       console.log("handleNewMessage function");
       event.preventDefault();
       var newMessage = {author: $("#nick").val(), text: $("#myarea").val()};
-      io.socket.post(_apiUrl, newMessage);
+      io.socket.post(_apiUrl, newMessage, function (resData, jwres){
+        
+      });
       return false;
   };
 
@@ -21,7 +23,7 @@ Prox.Chat = (function(P,undefined){
     var socket = io.connect();
 
     io.socket.on('connect', function() {
-
+      console.log("PRIMERA CONEXION, vamos a pedir los mensajes");
       io.socket.get(_apiUrl + "?sort=createdAt%20DESC", function(messages) {
         console.log({messages: messages});
         var arrayLength = messages.length;

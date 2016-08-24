@@ -30,7 +30,7 @@ sails new simple_chat
 - creo User.js y UserController.js
 - creo dos rutas, / y /home
 - muevo la inicialización del chat a homepage.ejs
-- pongo autoConnect="false" en el script de sails.io.js
+- pongo autoConnect="false" en el script de sails.io.js (XXX esto no lo encuentro en agosto!!)
 - añado la policy flash en config y en la carpeta policies y en el layout para que lo pinte
 - 
 
@@ -39,3 +39,11 @@ sails new simple_chat
 
 -para templates no he visto explicación en ningún sitio, sólo https://groups.google.com/forum/#!topic/sailsjs/rtannbZ1H1c
 https://lodash.com/docs#template
+
+
+#SIGUIENTES:
+- que no recargue mis propios mensajes al matar el servidor
+- actualizar el propio timeline con mis mensajes.
+- probar cloud9
+- desplegar heroku
+- lista usuarios conectados
