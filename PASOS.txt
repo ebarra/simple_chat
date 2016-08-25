@@ -30,8 +30,11 @@ sails new simple_chat
 - creo User.js y UserController.js
 - creo dos rutas, / y /home
 - muevo la inicialización del chat a homepage.ejs
-- pongo autoConnect="false" en el script de sails.io.js (XXX esto no lo encuentro en agosto!!)
+- pongo autoConnect="false" en el script de sails.io.js (XXX esto no lo encuentro en agosto!!, pero añado autosubscribe: [], en los modelos, y ya sólo se suscribe por defecto a sails_model_create_message.)
 - añado la policy flash en config y en la carpeta policies y en el layout para que lo pinte
+- que no recargue mis propios mensajes al matar el servidor, para eso pongo una variable first_connection en chat.js
+- actualizar el propio timeline con mis mensajes. Para esto en el callback del post en chat.js actualizo con un template la timeline
+- notificar al resto. Añado io.socket.on('message' en chat.js
 - 
 
 
@@ -42,8 +45,7 @@ https://lodash.com/docs#template
 
 
 #SIGUIENTES:
-- que no recargue mis propios mensajes al matar el servidor
-- actualizar el propio timeline con mis mensajes.
+
 - probar cloud9
 - desplegar heroku
 - lista usuarios conectados

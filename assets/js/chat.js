@@ -6,13 +6,16 @@ Prox.Chat = (function(P,undefined){
 
   var _apiUrl = "/message";
   var initial_nick = "";
+  var first_connection = true;
 
   var handleNewMessage = function() {
       console.log("handleNewMessage function");
       event.preventDefault();
       var newMessage = {author: $("#nick").val(), text: $("#myarea").val()};
       io.socket.post(_apiUrl, newMessage, function (resData, jwres){
-        
+        console.log("created")
+        var templ = JST["assets/templates/chat_elem.html"];
+        $("#chat_wrap").prepend(templ(resData));
       });
       return false;
   };
@@ -23,22 +26,27 @@ Prox.Chat = (function(P,undefined){
     var socket = io.connect();
 
     io.socket.on('connect', function() {
-      console.log("PRIMERA CONEXION, vamos a pedir los mensajes");
-      io.socket.get(_apiUrl + "?sort=createdAt%20DESC", function(messages) {
-        console.log({messages: messages});
-        var arrayLength = messages.length;
-        var templ = JST["assets/templates/chat_elem.html"];
-        for (var i = 0; i < arrayLength; i++) {
-            //he creado una función timeSince y accedo a ella desde la vista
-            //otras alternativas serían extender el objeto que se le pasa, o con los datos o con un helper
-            //https://lostechies.com/derickbailey/2012/04/26/view-helpers-for-underscore-templates/
-            $("#chat_wrap").append(templ(messages[i]));
-        }
-      });
+      if(first_connection){
+        console.log("PRIMERA CONEXION, vamos a pedir los mensajes");
+        first_connection = false;
+        io.socket.get(_apiUrl + "?sort=createdAt%20DESC", function(messages) {
+          console.log({messages: messages});
+          var arrayLength = messages.length;
+          var templ = JST["assets/templates/chat_elem.html"];
+          for (var i = 0; i < arrayLength; i++) {
+              //he creado una función timeSince y accedo a ella desde la vista
+              //otras alternativas serían extender el objeto que se le pasa, o con los datos o con un helper
+              //https://lostechies.com/derickbailey/2012/04/26/view-helpers-for-underscore-templates/
+              $("#chat_wrap").append(templ(messages[i]));
+          }
+        });
+      }
+    });
 
-      io.socket.on('new message', function(newMessage) {
-        console.log(newMessage);
-      });
+    io.socket.on('message', function notificationReceivedFromServer ( message ) {
+      console.log("created")
+      var templ = JST["assets/templates/chat_elem.html"];
+      $("#chat_wrap").prepend(templ(message.data));
 
     });
   };

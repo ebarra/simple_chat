@@ -9,7 +9,7 @@
 module.exports = {
 
   schema: true,
-
+  autosubscribe: [],
   attributes: {
     author: {
       type: 'string',
