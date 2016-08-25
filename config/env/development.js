@@ -11,7 +11,9 @@
  */
 
 module.exports = {
-
+  port: process.env.PORT || "1337",
+  host: process.env.IP || "127.0.0.1"
+  
   /***************************************************************************
    * Set the default database connection for models in the development       *
    * environment (see config/connections.js and config/models.js )           *

@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": 1,
+    "node": 1
+  },
+ 
+  "globals": {
+    "$":1,
+    "jQuery": 1,
+    "JST": 1,
+    "io": 1,
+    "sails": true,
+    "UserController": true,
+    "User": true
+  }
+}

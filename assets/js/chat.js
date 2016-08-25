@@ -40,6 +40,17 @@ Prox.Chat = (function(P,undefined){
               $("#chat_wrap").append(templ(messages[i]));
           }
         });
+        io.socket.get(_apiUrl + "?sort=createdAt%20DESC", function(messages) {
+          console.log({messages: messages});
+          var arrayLength = messages.length;
+          var templ = JST["assets/templates/chat_elem.html"];
+          for (var i = 0; i < arrayLength; i++) {
+              //he creado una función timeSince y accedo a ella desde la vista
+              //otras alternativas serían extender el objeto que se le pasa, o con los datos o con un helper
+              //https://lostechies.com/derickbailey/2012/04/26/view-helpers-for-underscore-templates/
+              $("#chat_wrap").append(templ(messages[i]));
+          }
+        });
       }
     });
 
