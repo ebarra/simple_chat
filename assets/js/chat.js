@@ -4,7 +4,8 @@
 
 Prox.Chat = (function(P,undefined){
 
-  var _apiUrl = "/message";
+  var _messagesApiUrl = "/message";
+  var _usersApiUrl = "/user";
   var initial_nick = "";
   var first_connection = true;
 
@@ -12,7 +13,7 @@ Prox.Chat = (function(P,undefined){
       console.log("handleNewMessage function");
       event.preventDefault();
       var newMessage = {author: $("#nick").val(), text: $("#myarea").val()};
-      io.socket.post(_apiUrl, newMessage, function (resData, jwres){
+      io.socket.post(_messagesApiUrl, newMessage, function (resData, jwres){
         console.log("created")
         var templ = JST["assets/templates/chat_elem.html"];
         $("#chat_wrap").prepend(templ(resData));
@@ -23,13 +24,13 @@ Prox.Chat = (function(P,undefined){
   var init = function(nick){
     initial_nick = nick;
 
-    var socket = io.connect();
+    //var socket = io.connect();
 
     io.socket.on('connect', function() {
       if(first_connection){
         console.log("PRIMERA CONEXION, vamos a pedir los mensajes");
         first_connection = false;
-        io.socket.get(_apiUrl + "?sort=createdAt%20DESC", function(messages) {
+        io.socket.get(_messagesApiUrl + "?sort=createdAt%20DESC", function(messages) {
           console.log({messages: messages});
           var arrayLength = messages.length;
           var templ = JST["assets/templates/chat_elem.html"];
@@ -40,15 +41,15 @@ Prox.Chat = (function(P,undefined){
               $("#chat_wrap").append(templ(messages[i]));
           }
         });
-        io.socket.get(_apiUrl + "?sort=createdAt%20DESC", function(messages) {
-          console.log({messages: messages});
-          var arrayLength = messages.length;
-          var templ = JST["assets/templates/chat_elem.html"];
+        io.socket.get(_usersApiUrl + "?sort=createdAt%20DESC", function(users) {
+          console.log({users: users});
+          var arrayLength = users.length;
+          var templ = JST["assets/templates/user_elem.html"];
           for (var i = 0; i < arrayLength; i++) {
               //he creado una función timeSince y accedo a ella desde la vista
               //otras alternativas serían extender el objeto que se le pasa, o con los datos o con un helper
               //https://lostechies.com/derickbailey/2012/04/26/view-helpers-for-underscore-templates/
-              $("#chat_wrap").append(templ(messages[i]));
+              $("#friends_wrap").append(templ(users[i]));
           }
         });
       }

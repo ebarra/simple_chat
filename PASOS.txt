@@ -46,10 +46,9 @@ https://lodash.com/docs#template
 
 
 #SIGUIENTES:
-
-- probar cloud9
-- desplegar heroku
+- decidir modelo de usuario
 - lista usuarios conectados
+- desplegar heroku
 
 
 #VER, LINKS, ...
