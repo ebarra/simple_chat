@@ -20,7 +20,7 @@ module.exports = {
         req.session.flash = {err: err};
         res.serverError(err);
       }
-      console.log("USUARIO CREADO CON EXITO, ponemos el flash")
+      console.log("USUARIO CREADO CON EXITO, ponemos el flash");
       req.session.flash = {info: "login exitoso"};
       return res.redirect('/home');
     });

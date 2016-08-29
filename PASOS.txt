@@ -30,32 +30,29 @@ sails new simple_chat
 - creo User.js y UserController.js
 - creo dos rutas, / y /home
 - muevo la inicialización del chat a homepage.ejs
-- pongo autoConnect="false" en el script de sails.io.js (XXX esto no lo encuentro en agosto!!, pero añado autosubscribe: [], en los modelos, y ya sólo se suscribe por defecto a sails_model_create_message.)
 - añado la policy flash en config y en la carpeta policies y en el layout para que lo pinte
-- deshabilito pubsub en el .sailsrc https://gist.github.com/RWOverdijk/786af551baa4b89f9824 y pongo el autoWatch a false en el modelo Message.ejs
+- pubsub. opciones:
+  - Se puede deshabilitar pubsub en el .sailsrc https://gist.github.com/RWOverdijk/786af551baa4b89f9824 pero no lo hago de momento. Voy a intentar usar el pubsub por defecto del blueprint API
+  - se puede hacer que no autoconecte los sockets poniendo autoConnect="false" en el script de sails.io.js. ver https://github.com/balderdashy/sails.io.js/blob/master/README.md 
+  - ver https://gist.github.com/mikermcneil/6598661 para cómo usar los sockets de sails desde el cliente
+  - añado autosubscribe: [], en los modelos, y ya sólo se suscribe por defecto a sails_model_create_message, que se hace con el watch
+  - No pongo el autoWatch a false en el modelo Message.ejs, porque si no no se suscribe a los create message y si interesa que se suscriba.
+
 - que no recargue mis propios mensajes al matar el servidor, para eso pongo una variable first_connection en chat.js
 - actualizar el propio timeline con mis mensajes. Para esto en el callback del post en chat.js actualizo con un template la timeline
-- notificar al resto. Añado io.socket.on('message' en chat.js
--
+- notificar al resto de un mensaje, como se han suscrito con el watch,  añado io.socket.on('message' en chat.js
+- 
 
 
-
-
--para templates no he visto explicación en ningún sitio, sólo https://groups.google.com/forum/#!topic/sailsjs/rtannbZ1H1c
-https://lodash.com/docs#template
 
 
 #SIGUIENTES:
-
-- probar cloud9
-- desplegar heroku
+- decidir modelo de usuario
 - lista usuarios conectados
+- desplegar heroku
 
 
 #VER, LINKS, ...
-ver suscripciones y diferencia entre watch y subscribe
-
 - suscripciones: http://stackoverflow.com/questions/19818953/how-do-i-subscribe-to-a-model-instance-in-sails-js
-https://github.com/balderdashy/sails/issues/1465
-https://groups.google.com/forum/#!topic/sailsjs/UQvTjOmwlAU
-http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/subscribe
+-para templates no he visto explicación en ningún sitio, sólo https://groups.google.com/forum/#!topic/sailsjs/rtannbZ1H1c
+https://lodash.com/docs#template
