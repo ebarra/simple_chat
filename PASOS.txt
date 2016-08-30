@@ -33,7 +33,7 @@ sails new simple_chat
 - añado la policy flash en config y en la carpeta policies y en el layout para que lo pinte
 - pubsub. opciones:
   - Se puede deshabilitar pubsub en el .sailsrc https://gist.github.com/RWOverdijk/786af551baa4b89f9824 pero no lo hago de momento. Voy a intentar usar el pubsub por defecto del blueprint API
-  - se puede hacer que no autoconecte los sockets poniendo autoConnect="false" en el script de sails.io.js. ver https://github.com/balderdashy/sails.io.js/blob/master/README.md 
+  - se puede hacer que no autoconecte los sockets poniendo autoConnect="false" en el script de sails.io.js. ver https://github.com/balderdashy/sails.io.js/blob/master/README.md y https://github.com/balderdashy/sails.io.js/blob/master/example/index.html
   - ver https://gist.github.com/mikermcneil/6598661 para cómo usar los sockets de sails desde el cliente
   - añado autosubscribe: [], en los modelos, y ya sólo se suscribe por defecto a sails_model_create_message, que se hace con el watch
   - No pongo el autoWatch a false en el modelo Message.ejs, porque si no no se suscribe a los create message y si interesa que se suscriba.
@@ -41,7 +41,8 @@ sails new simple_chat
 - que no recargue mis propios mensajes al matar el servidor, para eso pongo una variable first_connection en chat.js
 - actualizar el propio timeline con mis mensajes. Para esto en el callback del post en chat.js actualizo con un template la timeline
 - notificar al resto de un mensaje, como se han suscrito con el watch,  añado io.socket.on('message' en chat.js
-- 
+- he tenido que crear api/blueprints/create.js para poder hacer populate de los mensajes creados y meter el autor. Otra alternativa sería hacer una nueva query al autor (/user/id) para sacar el nombre. O replicar la información metiendo en el mensaje el nombre del autor.
+
 
 
 

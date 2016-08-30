@@ -6,23 +6,26 @@ Prox.Chat = (function(P,undefined){
 
   var _messagesApiUrl = "/message";
   var _usersApiUrl = "/user";
-  var initial_nick = "";
+  var user = "";
   var first_connection = true;
 
   var handleNewMessage = function() {
       console.log("handleNewMessage function");
       event.preventDefault();
-      var newMessage = {author: $("#nick").val(), text: $("#myarea").val()};
+      console.log("USERID: " + user.id);
+      var newMessage = {author: user.id, text: $("#myarea").val()};
       io.socket.post(_messagesApiUrl, newMessage, function (resData, jwres){
-        console.log("created")
+        console.log("created resData es:");
+        console.log(resData);
         var templ = JST["assets/templates/chat_elem.html"];
         $("#chat_wrap").prepend(templ(resData));
       });
       return false;
   };
 
-  var init = function(nick){
-    initial_nick = nick;
+  var init = function(logged_user){
+    console.log("logged_user:", logged_user);
+    user = logged_user;
 
     //var socket = io.connect();
 
@@ -95,7 +98,7 @@ Prox.Chat = (function(P,undefined){
   };
 
   var is_own = function(who){
-    if(initial_nick==who){
+    if(user.nick==who.nick){
       return true;
     } else {
       return false;

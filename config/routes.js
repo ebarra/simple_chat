@@ -32,6 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  //habilito rutas de acciones (/user/new /user/:id/edit) en config/blueprints.js con actions:true
+  
+  //ruta de entrada en la app
   'get /': 'UserController.new',
   //'post /user': 'UserController.create',
   'get /home': 'HomeController.show'

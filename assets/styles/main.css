@@ -141,11 +141,13 @@ body {
     width: 80%;
     margin: 60px auto 0;
 }
+.user_block_content .user_info .nick,
 .user_block_content .user_info .name,
 .user_block_content .user_info .sex {
     margin-bottom: -1px;
 
 }
+.user_block_content .user_info .nick > *,
 .user_block_content .user_info .name > *,
 .user_block_content .user_info .sex > * {
     font-size: 14px;

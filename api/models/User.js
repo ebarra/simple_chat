@@ -9,6 +9,7 @@
 module.exports = {
 
   schema: true,
+  autoWatch: false,
   autosubscribe: [],
   attributes: {
     name: {
@@ -26,6 +27,11 @@ module.exports = {
     avatar_url: {
       type: 'string',
       required: true
+    },
+    // Referencia a sus mensajes (has-many)
+    messages: {
+      collection: 'message',
+      via: 'author'
     }
   }
 
