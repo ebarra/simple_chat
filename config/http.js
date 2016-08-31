@@ -22,7 +22,9 @@ module.exports.http = {
   ****************************************************************************/
 
   middleware: {
-
+  
+    methodOverride: require('sails/node_modules/method-override')('_method'),
+    
   /***************************************************************************
   *                                                                          *
   * The order in which middleware should be run for HTTP request. (the Sails *

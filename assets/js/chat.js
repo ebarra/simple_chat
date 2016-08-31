@@ -59,57 +59,25 @@ Prox.Chat = (function(P,undefined){
     });
 
     io.socket.on('message', function notificationReceivedFromServer ( message ) {
-      console.log("created")
+      console.log("created");
       var templ = JST["assets/templates/chat_elem.html"];
       $("#chat_wrap").prepend(templ(message.data));
 
     });
   };
-
-  /*obtenida de
-  * http://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
-  */
-  var timeSince = function (date) {
-
-      var seconds = Math.floor((new Date() - date) / 1000);
-
-      var interval = Math.floor(seconds / 31536000);
-
-      if (interval > 1) {
-          return interval + " years";
-      }
-      interval = Math.floor(seconds / 2592000);
-      if (interval > 1) {
-          return interval + " months";
-      }
-      interval = Math.floor(seconds / 86400);
-      if (interval > 1) {
-          return interval + " days";
-      }
-      interval = Math.floor(seconds / 3600);
-      if (interval > 1) {
-          return interval + " hours";
-      }
-      interval = Math.floor(seconds / 60);
-      if (interval > 1) {
-          return interval + " minutes";
-      }
-      return Math.floor(seconds) + " seconds";
-  };
-
-  var is_own = function(who){
-    if(user.nick==who.nick){
-      return true;
+  
+  var get_user = function(){
+    if(user){
+      return user;
     } else {
-      return false;
+      return "No hay ningún usuario logueado en esta sesión";
     }
   };
 
   return {
+    get_user: get_user,
     init: init,
-    handleNewMessage: handleNewMessage,
-    is_own: is_own,
-    timeSince: timeSince
+    handleNewMessage: handleNewMessage
   };
 
 }) (Prox);

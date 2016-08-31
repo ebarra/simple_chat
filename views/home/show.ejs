@@ -36,6 +36,11 @@
                     </div>
                 </div>
             </div>
+             <div class="">
+                <form action="/user/<%= req.session.user.id %>?_method=DELETE" method="POST">
+                  <button type="submit">Logout</button>
+                </form>
+            </div>
 
             <div class="app_footer">
                 <img class="logo_big" src="img/proximity_logo.svg" alt="">

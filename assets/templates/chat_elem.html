@@ -1,5 +1,5 @@
 <!-- Chat element -->
-<div class="chat_element <%=Prox.Chat.is_own(author)==true ? '':'own_message'%>">
+<div class="chat_element <%=Prox.Utils.is_same(author)==true ? '':'own_message'%>">
     <div class="chat_name">
         <%=author.nick%>
     </div>
@@ -11,7 +11,7 @@
         </div>
         <div class="chat_meta clearfix">
             <div class="chat_time">
-                <%=Prox.Chat.timeSince(new Date(createdAt))%>
+                <%=Prox.Utils.timeSince(new Date(createdAt))%>
             </div>
             <div class="chat_distance">
                 35 m
