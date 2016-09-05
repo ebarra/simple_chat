@@ -2,7 +2,7 @@
  * Module dependencies
  */
 var actionUtil = require('../../node_modules/sails/lib/hooks/blueprints/actionUtil');
-var _ = require('../../node_modules/sails/node_modules/lodash');
+var _ = require('../../node_modules/lodash');
 
 /**
  * Create Record
