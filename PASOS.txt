@@ -46,6 +46,14 @@ sails new simple_chat
 - en el destroy en lugar de borrar el usuario hago un update de un campo status a "offline". Es que si no los mensajes se quedan sin autor al borrarse el autor y peta al pintarse. Esto implica que el /users solo devuelve los "online" no todos (esto lo hago con http://stackoverflow.com/questions/25296387/how-to-use-the-find-where-sailsjs-blueprint-route)
 - quito lo de first_connection y el on("connect") porque a veces reconecta solo. La opción con ambas cosas implicaba gestionar yo las conexiones a mano y poner autoconnect a false en layout.ejs
 
+- despliego siguiendo: https://docs.c9.io/docs/deploying-via-cli
+   -> comandos:
+     - wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+     - heroku login
+     - heroku create
+     - git push heroku master
+     - heroku logs -n 150
+     
 
 
 
