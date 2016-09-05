@@ -23,7 +23,7 @@ module.exports.http = {
 
   middleware: {
   
-    //methodOverride: require('sails/node_modules/method-override')('_method'),
+    methodOverride: require('../../node_modules/sails/node_modules/method-override')('_method'),
     
   /***************************************************************************
   *                                                                          *
