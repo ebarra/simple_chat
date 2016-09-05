@@ -11,7 +11,6 @@ Prox.Chat = (function(P,undefined){
 
   var handleNewMessage = function() {
       console.log("handleNewMessage function");
-      event.preventDefault();
       console.log("USERID: " + user.id);
       var newMessage = {author: user.id, text: $("#myarea").val()};
       io.socket.post(_messagesApiUrl, newMessage, function (resData, jwres){
@@ -28,7 +27,7 @@ Prox.Chat = (function(P,undefined){
     user = logged_user;
 
     //var socket = io.connect();
-
+    
     io.socket.on('connect', function() {
       if(first_connection){
         console.log("PRIMERA CONEXION, vamos a pedir los mensajes");
@@ -44,7 +43,7 @@ Prox.Chat = (function(P,undefined){
               $("#chat_wrap").append(templ(messages[i]));
           }
         });
-        io.socket.get(_usersApiUrl + "?sort=createdAt%20DESC", function(users) {
+        io.socket.get(_usersApiUrl + "?status=online&sort=createdAt%20DESC", function(users) {
           console.log({users: users});
           var arrayLength = users.length;
           var templ = JST["assets/templates/user_elem.html"];
@@ -55,14 +54,33 @@ Prox.Chat = (function(P,undefined){
               $("#friends_wrap").append(templ(users[i]));
           }
         });
+      } else {
+        console.log("first_connection era false, ya teniamos socket conectado");
       }
     });
 
-    io.socket.on('message', function notificationReceivedFromServer ( message ) {
-      console.log("created");
+    io.socket.on('message', function messageNotificationReceivedFromServer( message ) {
+      console.log("MESSAGE notification through the socket");
       var templ = JST["assets/templates/chat_elem.html"];
       $("#chat_wrap").prepend(templ(message.data));
-
+    });
+    
+    io.socket.on('user', function userNotificationReceivedFromServer( message ) {
+      console.log("USER notification through the socket");
+      console.log(message);
+      switch (message.verb) {
+        case 'created':
+          //en el create el message es Object {verb: "created", data: Object, id: 105}
+          add_user(message.data); 
+          break;
+        case 'destroyed':
+          //en el destroy me mandan message que es: Object {verb: "destroyed", id: "105", previous: Object}
+          remove_user(message.id);
+          break;
+        default:
+          break;
+      }
+      
     });
   };
   
@@ -72,6 +90,15 @@ Prox.Chat = (function(P,undefined){
     } else {
       return "No hay ningún usuario logueado en esta sesión";
     }
+  };
+  
+  var add_user = function(user){
+    var templ = JST["assets/templates/user_elem.html"];
+    $("#friends_wrap").prepend(templ(user));
+  };
+  
+  var remove_user = function(id){
+    $("#user-"+id).hide();
   };
 
   return {

@@ -42,6 +42,9 @@ sails new simple_chat
 - actualizar el propio timeline con mis mensajes. Para esto en el callback del post en chat.js actualizo con un template la timeline
 - notificar al resto de un mensaje, como se han suscrito con el watch,  añado io.socket.on('message' en chat.js
 - he tenido que crear api/blueprints/create.js para poder hacer populate de los mensajes creados y meter el autor. Otra alternativa sería hacer una nueva query al autor (/user/id) para sacar el nombre. O replicar la información metiendo en el mensaje el nombre del autor.
+- copio del destroy de user de building-realtime-webapp para poder meter un redirect (porque si uso el de blueprint redirige a un json del usuario), otra opción sería hacerlo por Ajax
+- en el destroy en lugar de borrar el usuario hago un update de un campo status a "offline". Es que si no los mensajes se quedan sin autor al borrarse el autor y peta al pintarse. Esto implica que el /users solo devuelve los "online" no todos (esto lo hago con http://stackoverflow.com/questions/25296387/how-to-use-the-find-where-sailsjs-blueprint-route)
+- 
 
 
 
@@ -57,3 +60,4 @@ sails new simple_chat
 - suscripciones: http://stackoverflow.com/questions/19818953/how-do-i-subscribe-to-a-model-instance-in-sails-js
 -para templates no he visto explicación en ningún sitio, sólo https://groups.google.com/forum/#!topic/sailsjs/rtannbZ1H1c
 https://lodash.com/docs#template
+- se puede tener una lista de sockets conectados y tal, pero yo de momento dejo que lo gestione sails con las notificaciones y subscribes. Se podría hacer asi: http://stackoverflow.com/questions/8284116/create-a-list-of-connected-clients-using-socket-io o así: http://stackoverflow.com/questions/6563885/socket-io-how-do-i-get-a-list-of-connected-sockets-clients

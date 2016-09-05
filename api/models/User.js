@@ -9,8 +9,8 @@
 module.exports = {
 
   schema: true,
-  autoWatch: false,
-  autosubscribe: [],
+  //autoWatch: false,
+  autosubscribe: ['destroy'],
   attributes: {
     name: {
       type: 'string',
@@ -27,6 +27,11 @@ module.exports = {
     avatar_url: {
       type: 'string',
       required: true
+    },
+    status:{
+      type: 'string',
+      required: true,
+      defaultsTo: "online"
     },
     // Referencia a sus mensajes (has-many)
     messages: {
