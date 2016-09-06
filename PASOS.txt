@@ -53,7 +53,8 @@ sails new simple_chat
      - heroku create
      - git push heroku master
      - heroku logs -n 150
-     
+    -> en production en heroku no funciona fontawesome. Siguiendo https://eftakhairul.com/asset-management-and-font-awesome-icons-in-production-sails-app/ 
+    XXX probar http://stackoverflow.com/questions/17929307/how-to-serve-a-bootstrap-template-in-sails-0-9
 
 
 
