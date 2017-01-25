@@ -1,15 +1,23 @@
-<form role="form" action="/user" method="POST">
-  <input name="name"  placeholder="Escribe aquí tu nombre"></input><br/>
-  <input name="nick" placeholder="Escribe aquí tu nick"></input><br/>
-  <label>Sexo:</label>
-  <select name="gender">
-    <option value="hombre">Hombre</option>
-    <option value="mujer">Mujer</option>
-  </select><br/>
-  <input name="avatar_url" placeholder="Escribe aquí el URL de tu avatar"></input><br/>
-  <button type="submit">Login</button>
-</form>
+<div class="container">
+    <div class="login">
+        <div class="logo">
+            <img src="img/logo.svg" alt="">
+        </div>
+        <form action="/user" method="POST">
+          <div class="form_block">
+            <label for="name">User name</label>
+            <input type="text" name="name">
+          </div>
+          <div class="form_block">
+            <label for="password">User pass</label>
+            <input type="password" name="password">
+          </div>
+          <button type="submit">
+            Enviar
+          </button>
+        </form>
+    </div>
+</div>
+<%console.log("OEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe");%>
 
-<br/>
-<br/>
-<a href="/home">Go to chat</a>
+<%console.log(req.session);%>

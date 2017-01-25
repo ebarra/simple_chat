@@ -32,10 +32,29 @@ sails new simple_chat
 - muevo la inicialización del chat a homepage.ejs
 - pongo autoConnect="false" en el script de sails.io.js
 - añado la policy flash en config y en la carpeta policies y en el layout para que lo pinte
-- 
+- deshabilito pubsub en el .sailsrc https://gist.github.com/RWOverdijk/786af551baa4b89f9824 y pongo el autoWatch a false en el modelo Message.ejs
+-
 
+
+hacer la lista de usuarios
+
+
+FOREVER COMANDOS:
+------------------------------------------
+forever start --watch app.js
+forever stopall
+forever list
+------------------------------------------
 
 
 
 -para templates no he visto explicación en ningún sitio, sólo https://groups.google.com/forum/#!topic/sailsjs/rtannbZ1H1c
 https://lodash.com/docs#template
+
+
+ver suscripciones y diferencia entre watch y subscribe
+
+- suscripciones: http://stackoverflow.com/questions/19818953/how-do-i-subscribe-to-a-model-instance-in-sails-js
+https://github.com/balderdashy/sails/issues/1465
+https://groups.google.com/forum/#!topic/sailsjs/UQvTjOmwlAU
+http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/subscribe

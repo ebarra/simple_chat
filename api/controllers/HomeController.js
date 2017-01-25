@@ -8,7 +8,7 @@
 module.exports = {
 	show: function(req, res) {
 		// Response the view with the action's name.
-    console.log("Show de HomeController")
+    console.log("Show de HomeController");
 		return res.view();
 	}
 };

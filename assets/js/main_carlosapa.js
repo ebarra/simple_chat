@@ -24,21 +24,21 @@ target.addEventListener('touchmove', function(e){
       function delayed () {
         if (!execAsap)
           func.apply(obj, args);
-        timeout = null; 
-      };
+        timeout = null;
+      }
       if (timeout)
           clearTimeout(timeout);
       else if (execAsap)
           func.apply(obj, args);
-      timeout = setTimeout(delayed, threshold || 100); 
+      timeout = setTimeout(delayed, threshold || 100);
     };
-  }
+  };
 	jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 })(jQuery,'smartresize');
- 
+
 
 var app_window = $('.app');
-$(window).smartresize(function(){  
+$(window).smartresize(function(){
 	app_window.outerHeight(window.innerHeight - 16 + 'px');
 });
 $(document).ready(function () {
@@ -89,5 +89,3 @@ GoBack.prototype.init_events = function () {
 };
 
 var goback = new GoBack();
-
-

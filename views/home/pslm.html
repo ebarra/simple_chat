@@ -1,0 +1,61 @@
+<div class="app">
+
+    <div class="user_block">
+
+        <!-- User block -->
+        <div class="user_block_content clearfix">
+            <div class="friends_toggle">
+                <span class="fa fa-bars"></span>
+            </div>
+            <div class="user_image">
+                <img src="img/128-5.png" alt="">
+            </div>
+            <input type="text" value="Carlosapa" id="nick"/>
+
+            <div class="user_info">
+                <div class="name">
+                    <div class="user_label">
+                        Nombre:
+                    </div>
+                    <div class="user_content">
+                        Carlos Aparicio
+                    </div>
+                </div>
+                <div class="sex">
+                    <div class="user_label">
+                        Sexo:
+                    </div>
+                    <div class="user_content">
+                        Hombre
+                    </div>
+                </div>
+            </div>
+
+            <div class="app_footer">
+                <img class="logo_big" src="img/proximity_logo.svg" alt="">
+                <img class="logo_responsive" src="img/proximity_logo_responsive.svg" alt="">
+            </div>
+        </div>
+        <!-- /User block -->
+
+    </div>
+
+    <div class="chat_block">
+        <div class="chat_entry">
+            <form class="ChatForm" onSubmit="return Prox.Chat.handleNewMessage()">
+              <textarea id="myarea" placeholder="Qué te cuentas, Carlos?" ></textarea>
+              <button type="submit"><span class="fa fa-chevron-right"></span></button>
+            </form>
+        </div>
+
+        <div class="chat_content clearfix" id="chat_wrap"></div>
+    </div>
+
+    <div class="friends_block" id="friends_wrap"></div>
+
+    <div class="black_layer"></div>
+    <div class="back_to_top">
+        <span class="fa fa-chevron-up"></span>
+    </div>
+
+</div>

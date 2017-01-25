@@ -1,69 +1,51 @@
-<div class="app">
-
-    <div class="user_block">
-
-        <!-- User block -->
-        <div class="user_block_content clearfix">
-            <div class="friends_toggle">
-                <span class="fa fa-bars"></span>
-            </div>
-            <div class="user_image">
-                <img src="img/128-5.png" alt="">
-            </div>
-            <input type="text" value="Carlosapa" id="nick"/>
-
-            <div class="user_info">
-                <div class="name">
-                    <div class="user_label">
-                        Nombre:
-                    </div>
-                    <div class="user_content">
-                        Carlos Aparicio
-                    </div>
-                </div>
-                <div class="sex">
-                    <div class="user_label">
-                        Sexo:
-                    </div>
-                    <div class="user_content">
-                        Hombre
-                    </div>
-                </div>
-            </div>
-
-            <div class="app_footer">
-                <img class="logo_big" src="img/proximity_logo.svg" alt="">
-                <img class="logo_responsive" src="img/proximity_logo_responsive.svg" alt="">
+<div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="img/logo.svg" alt="">
             </div>
         </div>
-        <!-- /User block -->
-
-    </div>
-
-    <div class="chat_block">
-        <div class="chat_entry">
-            <form class="ChatForm" onSubmit="return Prox.Chat.handleNewMessage()">
-              <textarea id="myarea" placeholder="Qué te cuentas, Carlos?" ></textarea>
-              <button type="submit"><span class="fa fa-chevron-right"></span></button>
-            </form>
+        <div class="app clearfix">
+            <div class="users" id="friends_wrap">
+            </div>
+            <!-- users -->
+            <div class="chat">
+                <div class="chat_holder">
+                    <div class="chat_input">
+                        <form action="#" method="GET">
+                            <textarea name="textin" placeholder="Type somethin' cool, User Id 0..."></textarea>
+                            <button type="submit">
+                                <img src="img/right.svg" alt="">
+                            </button>
+                        </form>
+                    </div>
+                    <div class="chat_bubbles clearfix"  id="chat_wrap">
+                    </div>
+                    <!-- chat_bubbles -->
+                </div>
+                <!-- chat_holder -->
+            </div>
+            <!-- chat -->
+            <div class="profil">
+                <div class="profil_pic">
+                    <img src="img/128.jpg" alt="">
+                </div>
+                <div class="profil_info">
+                    <div class="profil_name">
+                        <%=req.session.user.name%>
+                    </div>
+                    <div class="profil_time">
+                        <%=new Date()%>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="chat_content clearfix" id="chat_wrap"></div>
+        <!-- app -->
     </div>
 
-    <div class="friends_block" id="friends_wrap"></div>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function(){
+        console.log("Homepage document ready");
+        Prox.Chat.init($("#nick").val());
+      }, false);
 
-    <div class="black_layer"></div>
-    <div class="back_to_top">
-        <span class="fa fa-chevron-up"></span>
-    </div>
-
-</div>
-
-<script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function(){
-    console.log("Homepage document ready");
-    Prox.Chat.init($("#nick").val());
-  }, false);
-
-</script>
+    </script>

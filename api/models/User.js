@@ -15,17 +15,13 @@ module.exports = {
       type: 'string',
       required: true
     },
-    nick: {
+    password: {
       type: 'string',
       required: true
     },
     gender: {
       type: 'string',
-      required: true
-    },
-    avatar_url: {
-      type: 'string',
-      required: true
+      required: false
     }
   }
 
