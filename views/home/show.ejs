@@ -10,8 +10,8 @@
             <div class="chat">
                 <div class="chat_holder">
                     <div class="chat_input">
-                        <form action="#" method="GET" onSubmit="return Prox.Chat.handleNewMessage()">
-                            <textarea name="textin" placeholder="Type somethin' cool, <%=req.session.user.name%>..."></textarea>
+                        <form method="POST" onSubmit="return Prox.Chat.handleNewMessage()">
+                            <textarea name="text" id="myarea" placeholder="Type somethin' cool, <%=req.session.user.name%>..."></textarea>
                             <button type="submit">
                                 <img src="img/right.svg" alt="">
                             </button>
@@ -48,7 +48,7 @@
 
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function(){
-        console.log("Homepage document ready");
+        console.log('Homepage document ready. User: <%-JSON.stringify(req.session.user)%>');
         Prox.Chat.init(<%-JSON.stringify(req.session.user)%>);
       }, false);
 

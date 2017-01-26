@@ -9,7 +9,7 @@ Prox.Chat = (function(P,undefined){
   var user = "";
 
   var handleNewMessage = function() {
-      console.log("handleNewMessage function");
+      console.log("handleNewMessage function new file");
       console.log("USERID: " + user.id);
       var newMessage = {author: user.id, text: $("#myarea").val()};
       io.socket.post(_messagesApiUrl, newMessage, function (resData, jwres){
@@ -36,7 +36,7 @@ Prox.Chat = (function(P,undefined){
           $("#chat_wrap").append(templ(messages[i]));
       }
     });
-    
+
     io.socket.get(_usersApiUrl + "?status=online&sort=createdAt%20DESC", function(users) {
       console.log({users: users});
       var arrayLength = users.length;
@@ -55,14 +55,14 @@ Prox.Chat = (function(P,undefined){
       var templ = JST["assets/templates/chat_elem.html"];
       $("#chat_wrap").prepend(templ(message.data));
     });
-    
+
     io.socket.on('user', function userNotificationReceivedFromServer( message ) {
       console.log("USER notification through the socket");
       console.log(message);
       switch (message.verb) {
         case 'created':
           //en el create el message es Object {verb: "created", data: Object, id: 105}
-          add_user(message.data); 
+          add_user(message.data);
           break;
         case 'destroyed':
           //en el destroy me mandan message que es: Object {verb: "destroyed", id: "105", previous: Object}
@@ -71,10 +71,10 @@ Prox.Chat = (function(P,undefined){
         default:
           break;
       }
-      
+
     });
   };
-  
+
   var get_user = function(){
     if(user){
       return user;
@@ -82,12 +82,12 @@ Prox.Chat = (function(P,undefined){
       return "No hay ningún usuario logueado en esta sesión";
     }
   };
-  
+
   var add_user = function(user){
     var templ = JST["assets/templates/user_elem.html"];
     $("#friends_wrap").prepend(templ(user));
   };
-  
+
   var remove_user = function(id){
     $("#user-"+id).hide();
   };
