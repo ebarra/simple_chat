@@ -122,19 +122,16 @@ module.exports.sockets = {
   * disconnects                                                              *
   *                                                                          *
   ***************************************************************************/
-   afterDisconnect: function(session, socket, cb) {
-     // By default: do nothing.
-     return cb();
-   },
+
   // This custom onDisconnect function will be run each time a socket disconnects
-  /*
+
   afterDisconnect: function(session, socket, cb) {
     console.log("DISCONNECT SESSION", session);
       try {
         if(session.user){
             // Get the user instance
             User.findOne(session.user.id).exec(function(err, user) {
-
+              console.log("User found, we delete it");
               if (err) {return cb();}
               // Destroy the user instance
               User.destroy({id:user.id}).exec(function(err){
@@ -153,7 +150,7 @@ module.exports.sockets = {
       }
 
   },
-  */
+
 
   /***************************************************************************
   *                                                                          *
