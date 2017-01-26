@@ -30,31 +30,36 @@ sails new simple_chat
 - creo User.js y UserController.js
 - creo dos rutas, / y /home
 - muevo la inicialización del chat a homepage.ejs
-- pongo autoConnect="false" en el script de sails.io.js
 - añado la policy flash en config y en la carpeta policies y en el layout para que lo pinte
-- deshabilito pubsub en el .sailsrc https://gist.github.com/RWOverdijk/786af551baa4b89f9824 y pongo el autoWatch a false en el modelo Message.ejs
--
+- pubsub. opciones:
+  - Se puede deshabilitar pubsub en el .sailsrc https://gist.github.com/RWOverdijk/786af551baa4b89f9824 pero no lo hago de momento. Voy a intentar usar el pubsub por defecto del blueprint API
+  - se puede hacer que no autoconecte los sockets poniendo autoConnect="false" en el script de sails.io.js. ver https://github.com/balderdashy/sails.io.js/blob/master/README.md y https://github.com/balderdashy/sails.io.js/blob/master/example/index.html
+  - ver https://gist.github.com/mikermcneil/6598661 para cómo usar los sockets de sails desde el cliente
+  - añado autosubscribe: [], en los modelos, y ya sólo se suscribe por defecto a sails_model_create_message, que se hace con el watch
+  - No pongo el autoWatch a false en el modelo Message.ejs, porque si no no se suscribe a los create message y si interesa que se suscriba.
+
+- que no recargue mis propios mensajes al matar el servidor, para eso pongo una variable first_connection en chat.js
+- actualizar el propio timeline con mis mensajes. Para esto en el callback del post en chat.js actualizo con un template la timeline
+- notificar al resto de un mensaje, como se han suscrito con el watch,  añado io.socket.on('message' en chat.js
+- he tenido que crear api/blueprints/create.js para poder hacer populate de los mensajes creados y meter el autor. Otra alternativa sería hacer una nueva query al autor (/user/id) para sacar el nombre. O replicar la información metiendo en el mensaje el nombre del autor.
+- copio del destroy de user de building-realtime-webapp para poder meter un redirect (porque si uso el de blueprint redirige a un json del usuario), otra opción sería hacerlo por Ajax
+- en el destroy en lugar de borrar el usuario hago un update de un campo status a "offline". Es que si no los mensajes se quedan sin autor al borrarse el autor y peta al pintarse. Esto implica que el /users solo devuelve los "online" no todos (esto lo hago con http://stackoverflow.com/questions/25296387/how-to-use-the-find-where-sailsjs-blueprint-route)
+- quito lo de first_connection y el on("connect") porque a veces reconecta solo. La opción con ambas cosas implicaba gestionar yo las conexiones a mano y poner autoconnect a false en layout.ejs
+
+- despliego siguiendo: https://docs.c9.io/docs/deploying-via-cli
+   -> comandos:
+     - wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+     - heroku login
+     - heroku create
+     - git push heroku master
+     - heroku logs -n 150
+    -> en production en heroku no funciona fontawesome. Siguiendo https://eftakhairul.com/asset-management-and-font-awesome-icons-in-production-sails-app/ 
 
 
-hacer la lista de usuarios
 
 
-FOREVER COMANDOS:
-------------------------------------------
-forever start --watch app.js
-forever stopall
-forever list
-------------------------------------------
-
-
-
+#VER, LINKS, ...
+- suscripciones: http://stackoverflow.com/questions/19818953/how-do-i-subscribe-to-a-model-instance-in-sails-js
 -para templates no he visto explicación en ningún sitio, sólo https://groups.google.com/forum/#!topic/sailsjs/rtannbZ1H1c
 https://lodash.com/docs#template
-
-
-ver suscripciones y diferencia entre watch y subscribe
-
-- suscripciones: http://stackoverflow.com/questions/19818953/how-do-i-subscribe-to-a-model-instance-in-sails-js
-https://github.com/balderdashy/sails/issues/1465
-https://groups.google.com/forum/#!topic/sailsjs/UQvTjOmwlAU
-http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/subscribe
+- se puede tener una lista de sockets conectados y tal, pero yo de momento dejo que lo gestione sails con las notificaciones y subscribes. Se podría hacer asi: http://stackoverflow.com/questions/8284116/create-a-list-of-connected-clients-using-socket-io o así: http://stackoverflow.com/questions/6563885/socket-io-how-do-i-get-a-list-of-connected-sockets-clients

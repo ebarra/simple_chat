@@ -22,13 +22,15 @@ module.exports.http = {
   ****************************************************************************/
 
   middleware: {
-
-  /***************************************************************************
-  *                                                                          *
-  * The order in which middleware should be run for HTTP request. (the Sails *
-  * router is invoked by the "router" middleware below.)                     *
-  *                                                                          *
-  ***************************************************************************/
+  
+    methodOverride: require('../node_modules/method-override')('_method'),
+    
+    /***************************************************************************
+    *                                                                          *
+    * The order in which middleware should be run for HTTP request. (the Sails *
+    * router is invoked by the "router" middleware below.)                     *
+    *                                                                          *
+    ***************************************************************************/
 
     order: [
        'startRequestTimer',

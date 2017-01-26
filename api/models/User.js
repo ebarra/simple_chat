@@ -7,9 +7,9 @@
  */
 
 module.exports = {
-
   schema: true,
-
+  //autoWatch: false,
+  autosubscribe: ['destroy'],
   attributes: {
     name: {
       type: 'string',
@@ -22,6 +22,16 @@ module.exports = {
     gender: {
       type: 'string',
       required: false
+    },
+    status:{
+      type: 'string',
+      required: true,
+      defaultsTo: "online"
+    },
+    // Referencia a sus mensajes (has-many)
+    messages: {
+      collection: 'message',
+      via: 'author'
     }
   }
 

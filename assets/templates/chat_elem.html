@@ -1,6 +1,7 @@
-<div class="bubble <%=Prox.Chat.is_own(author)==true ? '':'own'%>">
+<!-- Chat element -->
+<div class="chat_element <%=Prox.Utils.is_same(author)==true ? '':'own'%>">
     <div class="bubble_name">
-        <%=author%>
+        <%=author.nick%>
     </div>
     <div class="bubble_content">
         <div class="bubble_text">
@@ -8,7 +9,7 @@
         </div>
         <div class="chat_meta clearfix">
             <div class="chat_time">
-                <%=Prox.Chat.timeSince(new Date(createdAt))%>
+                <%=Prox.Utils.timeSince(new Date(createdAt))%>
             </div>
             <div class="chat_distance">
                 35 m
