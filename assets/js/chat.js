@@ -25,6 +25,9 @@ Prox.Chat = (function(P,undefined){
     console.log("logged_user:", logged_user);
     user = logged_user;
 
+    //connectamos socket ya que he puesto autoconnect a false
+    io.socket = io.sails.connect();
+
     io.socket.get(_messagesApiUrl + "?sort=createdAt%20DESC", function(messages) {
       console.log({messages: messages});
       var arrayLength = messages.length;

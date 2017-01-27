@@ -9,6 +9,7 @@ module.exports = {
 	new: function(req, res) {
 		// Response the view with the action's name.
     console.log("UserController 'new' action");
+		req.session.path="/";
 		return res.view();
 	},
   create: function(req, res) {

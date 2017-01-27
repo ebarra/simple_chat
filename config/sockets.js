@@ -106,12 +106,13 @@ module.exports.sockets = {
   * app's security.                                                          *
   *                                                                          *
   ***************************************************************************/
-  // beforeConnect: function(handshake, cb) {
-  //   // `true` allows the connection
-  //   return cb(null, true);
-  //
-  //   // (`false` would reject the connection)
-  // },
+   beforeConnect: function(handshake, cb) {
+     // `true` allows the connection
+     console.log("SOCKETTTTTTTTTTTTTTTTTTTTTTTTTTT");
+     return cb(null, true);
+
+     // (`false` would reject the connection)
+   },
 
 
   /***************************************************************************
@@ -134,8 +135,8 @@ module.exports.sockets = {
               console.log("User found, we delete it");
               if (err) {return cb();}
               // Destroy the user instance
-              User.destroy({id:user.id}).exec(function(err){
-
+              User.update(user.id, {"status": "offline"}).exec(function updated(err, records) {
+                session.user.status="offline";
                 if (err) {return cb();}
 
                 // Publish the destroy event to every socket subscribed to this user instance

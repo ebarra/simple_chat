@@ -1345,7 +1345,8 @@ message:4,upgrade:5,noop:6},s=i(r),t={type:"error",data:"parser error"},u=a("blo
     io.sails = {
 
       // Whether to automatically connect a socket and save it as `io.socket`.
-      autoConnect: true,
+      //XXX KIKE change autoconnect default so no create socket in frontpage
+      autoConnect: false,
 
       // The route (path) to hit to get a x-origin (CORS) cookie
       // (or true to use the default: '/__getcookie')
